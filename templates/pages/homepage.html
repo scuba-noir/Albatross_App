@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Albatross</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Albatross">
+    <meta name="author" content="Albatross Team">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/apple-touch-icon.png' %}">
+
+    <link rel="manifest" href="{% static 'assets/favicon/site.webmanifest' %}">
+    <!--<link rel="mask-icon" color="#6366f1" href="{% static 'assets/favicon/safari-pinned-tab.svg' %}"> -->
+    <meta name="msapplication-TileColor" content="#080032">
+    <!--<meta name="msapplication-config" content="{% static 'assets/favicon/browserconfig.xml' %}"> -->
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
+      let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+      if (mode !== undefined && mode === 'dark') {
+        root.classList.add('dark-mode');
+      } else {
+        root.classList.remove('dark-mode');
+      }
+      
+      
+    </script>
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color:rgb(240, 239, 222);
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .dark-mode .page-loading {
+        background-color: #121519;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
+      }
+      .dark-mode .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2; 
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      .dark-mode .page-spinner {
+        background-color: rgba(255,255,255,.25);
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+
+      * {box-sizing: border-box;}
+      body {font-family: Verdana, sans-serif;}
+      .mySlides {display: none;}
+      img {vertical-align: middle;}
+
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+        background-color: #121519;
+      }
+
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+
+      position: relative;
+      margin: auto;
+    }
+
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 10s;
+    }
+
+    @keyframes fade {
+      from {opacity: 0} 
+      to {opacity: 1}
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .text {font-size: 11px}
+    }
+
+    .modal_fade {
+      animation-name: fade;
+      animation-duration: 1s;
+    }
+    
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 1500);
+        };
+      })();
+      
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="{% static 'node_modules/swiper/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/aos/dist/aos.css' %}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/css/theme.min.css' %}">
+
+
+  </head>
+  <!-- Body-->
+  <body>
+
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <!-- Page wrapper-->
+    <main class="page-wrapper">
+      {% include 'partials/navbar.html' %}      
+      <!-- Page content-->
+      
+      
+      <!-- Hero-->
+      <section class="container-fluid py-5 mt-4 px-sm-4 px-md-5">
+        <div class="dark-mode rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mt-2 mx-md-n3 mx-lg-auto" style="max-width: 1660px; background-color: black;">
+          <div class="jarallax position-absolute top-0 start-0 w-100 h-100 mt-5" data-jarallax data-speed="0.6">
+            <div class="jarallax-img position-absolute w-100 h-100" style="background-image: url(static/assets/img/landing/web-studio/hero-wave.png);"></div>
+          </div>
+          <div class="container position-relative zindex-2 pt-xl-4 pt-xxl-5 pb-sm-2">
+            <div class="row pt-md-3 pt-lg-2">
+              <div class="col-lg col-xxl-5 pb-lg-2 mb-xl-2">
+                <h4 class="display-1 text-center text-md-start mb-xxl-5 text-success" style="font-family:Pacifico; font-weight:lighter;">Albatross</h4>
+                <p class="fs-xl text-left text-lg-start pb-2 pb-md-0 mb-4 mb-md-5">Connecting the worldwide golf community to prestigious golf courses through new technologies</p>
+                <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-lg-start pb-3 pb-sm-5"><a class="btn btn-lg btn-primary rounded-pill w-100 w-sm-auto me-sm-3 me-xl-4 mb-2 mb-sm-0" data-bs-toggle = "modal" data-bs-target="#exampleModal">Contact Our Team</a><a class="btn btn-lg btn-link text-white w-100 w-sm-auto px-2" href="{% url 'technology' %}#albatross_whitepaper">Whitepaper<i class="ai-arrow-right ms-2"></i></a></div>
+              </div>
+              <div class="col-lg slideshow-container mb-2" style="height: 400px; background-color: transparent;">
+                  <div class="mySlides fade pb-2">
+                    <img src="{% static 'assets/img/slideshow_1.jpg' %}" style="width:100%; height:400px; border-radius: 20%;">
+                    <br>
+                  </div>
+                  <div class="mySlides fade pb-2">
+                    <img src="{% static 'assets/img/slideshow_2.jpeg' %}" style="width:100%; height: 400px; border-radius: 20%;">
+                    <br>
+                  </div>                 
+                  <div class="mySlides fade pb-2">
+                    <img src="{% static 'assets/img/slideshow_3.jpeg' %}" style="width:100%; height: 400px; border-radius: 20%;">
+                    <br>
+                  </div>
+                  
+                  <br>
+                  
+                  <div style="text-align:center">
+                    <span class="dot"></span> 
+                    <span class="dot"></span> 
+                    <span class="dot"></span> 
+                  </div>
+        
+                  <script>
+                    let slideIndex = 0;
+                    showSlides();
+                    
+                    function showSlides() {
+                      let i;
+                      let slides = document.getElementsByClassName("mySlides");
+                      let dots = document.getElementsByClassName("dot");
+                      for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";  
+                      }
+                      slideIndex++;
+                      if (slideIndex > slides.length) {slideIndex = 1}    
+                      for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                      }
+                      slides[slideIndex-1].style.display = "block";  
+                      dots[slideIndex-1].className += " active";
+                      setTimeout(showSlides, 10000); // Change image every 2 seconds
+                    }
+                    </script>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal modal_fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Contact Form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="{% url 'homepage' %}" method = "POST" role = "form">
+                  {% csrf_token %}
+                  <div class="mb-3 mb-sm-4">
+                    <label for="name" class="form-label">First Name</label>
+                    {{ contact_form.first_name }}
+                  </div>
+                  <div class="mb-3 mb-sm-4">
+                    <label for="name" class="form-label">Last Name</label>
+                    {{ contact_form.last_name }}
+                  </div>   
+                  <div class="mb-3 mb-sm-4">
+                    <label class="form-label">Email</label>
+                    {{ contact_form.email }}
+                  </div>
+                  <div class="mb-3 mb-sm-4">
+                    <label class="form-label">Message</label>
+                    {{ contact_form.message }}
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="sumbit" class="btn btn-primary" >Submit</button>                  
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section> 
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242);">
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content; background-color:transparent;">
+          <div class="row pt-1 justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family: Pacifico; font-weight: lighter;">Welcome to the Albatross Community</h1>
+            <hr style="color:#121519">
+          </div>
+          <div class="row" style="max-height: 350px;">
+            <div class="col pt-1 pb-1" style="max-height: fit-content;">
+              <br>
+              <p>We plan to partner with a collection of the best golf courses around the world to offer exclusive benefits. These benefits include the ability for owners to participate in special IRL events, enjoy exclusive discounts, benefit from early access to items, network with other community members and own unique digital pieces of art. We aim to foster a community of golf enthusiasts by giving them a platform to share their experiences, stories and passion with others.</p>
+              <p>Follow our social media accounts for roadmap and community updates!</p>
+              <div class="d-flex"><a class="btn btn-icon btn-sm btn-secondary rounded-circle me-3" href="https://twitter.com/Albatross_LLC"><i class="ai-twitter"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="https://www.instagram.com/albatrossgolf.io/?hl=en"><i class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle" href="#"><i class="ai-discord"></i></a></div>
+            </div>
+            <div class="col text-center" style="max-height:fit-content;">
+              <img src="{% static 'assets/img/albatross_gif_2.gif' %}" style="height:75%; margin-top:0px; margin-bottom: 0px; background-color:rgb(245, 242, 242);">
+              
+            </div>
+          </div>
+        </div><div id = "albatross_collections"></div>
+      </section>
+      
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(240, 239, 222);">
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;background-color:rgb(240, 239, 222);">
+          <div class="row justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter;">Albatross Collections</h1>
+            <p class="text-left">Our golf course and brand partners will allow community members to take advantage of real world utility</p>
+            <hr style="color:#121519">
+          </div>
+
+          <!-- Link swiper slides to any content via binded-content -->
+          <div class="row align-items-center pt-5">
+            <div class="col-md-5 mb-md-0 pb-md-0">
+              <!-- Binded items -->
+              <div class="binded-content">
+                <!-- Item -->
+                <div id="item1" class="binded-item active">
+                  <div class="ratio ratio-4x3" style="background-color:rgb(240, 239, 222);">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <img src ="{% static 'assets/img/slideshow_1.jpg' %}" style = "height:100%; width:100%; border-radius:25%; opacity: 60%;"></img>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item -->
+                <div id="item2" class="binded-item">
+                  <div class="ratio ratio-4x3 bg-faded-success">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <i class="ai-image text-success opacity-80"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item -->
+                <div id="item3" class="binded-item">
+                  <div class="ratio ratio-4x3 bg-faded-warning">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <i class="ai-image text-warning opacity-80"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-7 ps-xl-5">
+
+              <!-- Swiper slider -->
+              <div class="swiper" data-swiper-options='{
+                "spaceBetween": 50,
+                "loop": true,
+                "bindedContent": true,
+                "navigation": {
+                  "prevEl": "#prev-btn",
+                  "nextEl": "#next-btn"
+                }
+              }'>
+                <div class="swiper-wrapper text-center text-md-start">
+
+                  <!-- Item -->
+                  <div class="swiper-slide text-center" data-swiper-binded="#item1" >
+                    <h4> Coming Soon</h4>
+                    <p>Albatross NFT collections are scheduled for release in 2023</p>
+                  </div>
+
+      
+                </div>
+              
+              </div>
+            </div>
+          </div>
+          <div  id = "albatross_partners"></div>
+        </div>
+      </section>
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:#37715d;">
+        <div style = "padding-bottom:3px;"></div>
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;">
+          <div class="row pb-2 justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter; color: rgb(219, 213, 213);">Albatross Partners</h1>
+            <p class="text-left color-white" style="color:white;">Our golf course and brand partners will allow community members to take advantage of real world utility</p>
+            <hr style="color:white">
+          </div>
+          <div class="row align-items-center pt-5">
+            <div class="col-md-5 mb-md-0 pb-md-0">
+              <!-- Binded items -->
+              <div class="binded-content">
+                <!-- Item -->
+                <div id="item1" class="binded-item active" style="background-color:transparent;">
+                  <div class="ratio ratio-4x3" >
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5" style="background-color:transparent;">
+                      <img src ="{% static 'assets/img/slideshow_1.jpg' %}" style = "height:100%; width:100%; border-radius:25%; opacity: 60%; background-color: transparent;"></img>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item -->
+                <div id="item2" class="binded-item">
+                  <div class="ratio ratio-4x3 bg-faded-success">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <i class="ai-image text-success opacity-80"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item -->
+                <div id="item3" class="binded-item">
+                  <div class="ratio ratio-4x3 bg-faded-warning">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <i class="ai-image text-warning opacity-80"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-7 ps-xl-5">
+
+              <!-- Swiper slider -->
+              <div class="swiper" data-swiper-options='{
+                "spaceBetween": 50,
+                "loop": true,
+                "bindedContent": true,
+                "navigation": {
+                  "prevEl": "#prev-btn",
+                  "nextEl": "#next-btn"
+                }
+              }'>
+                <div class="swiper-wrapper text-center text-md-start">
+
+                  <!-- Item -->
+                  <div class="swiper-slide text-center" style ="color:white;" data-swiper-binded="#item1" >
+                    <h4 style="color:white;"> Coming Soon</h4>
+                    <p>Golf course and brand partners will be added starting in 2023. Follow our social media to stay up to date!</p>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+            
+          </div>
+        <div id = "albatross_roadmap"></div>
+        </div>
+      </section>
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5">
+        <div style = "margin-bottom:3px;"></div>
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;">
+          <div class="row-pb-2 justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter;">Albatross Roadmap</h1>
+            <hr style="color:#121519">
+            <br>
+          </div>
+        <!-- Step-->
+          <div class="row align-items-center position-relative pb-5 pb-lg-0 mb-1 mb-sm-2 mb-md-4 mb-lg-0">
+            <div class="col-md-6 col-xl-5 offset-lg-1 order-md-2 pb-2 pb-md-0 mb-4 mb-md-0" data-aos="fade-left" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md"><img class="d-dark-mode-none" src="{% static 'assets/img/landing/saas-2/steps/01-light.png' %}" width="525" alt="Image"><img class="d-none d-dark-mode-block" src="{% static 'assets/img/landing/saas-2/steps/01-dark.png' %}" width="525" alt="Image"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-xl-1 order-md-1" data-aos="fade-right" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md">
+              <div class="pe-md-4 pe-lg-0"><span class="badge fs-sm bg-faded-primary text-primary mb-3 mb-lg-4">Q1 2023</span>
+                <h3 class="h2 mb-3 mb-lg-4">Team Building and Initial Tech Development</h3>
+                <p class="pb-1 pb-lg-0 mb-4 mb-lg-5"><ul>
+                    <li>Finalize team size, members and roles ahead of 2023</li>
+                    <li>Develope Albatross application version 1.0 to support utility functions</li>
+                    <li>Begin development of Web3 technologies needed to support community</li>
+
+              </div>
+            </div>
+          </div>
+          <!-- Arrow-->
+          <div class="d-none d-lg-flex justify-content-center" data-aos="fade-in" data-aos-duration="500" data-aos-offset="250">
+            <svg class="d-block text-primary" width="339" height="365" viewBox="0 0 339 365" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: -150px; margin-top: -140px; margin-bottom: -108px;">
+              <path d="M324 291.371C120.111 291.37 240.756 58.7225 1.00032 73.2606" stroke="url(#arrow1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"></path>
+              <path d="M337.375 290.62C338.074 290.998 338.074 292.001 337.375 292.379L328.476 297.196C327.81 297.557 327 297.074 327 296.317L327 286.683C327 285.925 327.81 285.443 328.476 285.803L337.375 290.62Z" fill="currentColor"></path>
+              <defs>
+                <linearGradient id="arrow1" x1="324" y1="291.5" x2="-2.99974" y2="72.4997" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="currentColor"></stop>
+                  <stop offset="1" stop-color="currentColor" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <!-- Step-->
+          <div class="row align-items-center position-relative pb-5 pb-lg-0 mb-1 mb-sm-2 mb-md-4 mb-lg-0">
+            <div class="col-md-6 col-xl-5 offset-xl-1 pb-2 pb-md-0 mb-4 mb-md-0" data-aos="fade-right" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md"><img class="d-dark-mode-none" src="{% static 'assets/img/landing/saas-2/steps/02-light.png' %}" width="473" alt="Image"><img class="d-none d-dark-mode-block" src="{% static 'assets/img/landing/saas-2/steps/02-dark.png' %}" width="473" alt="Image"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1" data-aos="fade-left" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md">
+              <div class="ps-md-4 ps-lg-0"><span class="badge fs-sm bg-faded-primary text-primary mb-3 mb-lg-4">Q2 2023</span>
+                <h3 class="h2 mb-3 mb-lg-4">Partnerships & Marketing</h3>
+                <ul>
+                  <li>Secure partnership with targeted brands and media consultants</li>
+                  <li>Begin to build community through targeted marketing efforts</li>
+                  <li>Initiate discussions with potential golf courses</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Arrow-->
+          <div class="d-none d-lg-flex justify-content-center" data-aos="fade-in" data-aos-duration="500" data-aos-offset="250">
+            <svg class="d-block text-primary" width="263" height="275" viewBox="0 0 263 275" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: -60px; margin-left: -120px; margin-bottom: -80px;">
+              <path d="M8.13678 249.647C7.47108 250.081 6.59001 249.602 6.59106 248.808L6.60444 238.689C6.60544 237.931 7.4158 237.45 8.08162 237.811L16.5478 242.408C17.2136 242.77 17.2512 243.712 16.6163 244.125L8.13678 249.647Z" fill="currentColor"></path>
+              <path d="M261.961 37.8891C216.908 65.6243 128.226 135.486 133.916 193.05C141.029 265.005 265.134 173.468 173.666 148.634C89.2542 125.715 30.9125 210.547 13.9796 236.702" stroke="url(#arrow2)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"></path>
+              <defs>
+                <linearGradient id="arrow2" x1="13.9797" y1="234.5" x2="276.704" y2="60.1939" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="currentColor"></stop>
+                  <stop offset="1" stop-color="currentColor" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <!-- Step-->
+          <div class="row align-items-center position-relative">
+            <div class="col-md-6 col-xl-5 offset-lg-1 order-md-2 d-md-flex justify-content-end pb-2 pb-md-0 mb-4 mb-md-0" data-aos="fade-left" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md"><img class="d-dark-mode-none" src="{% static 'assets/img/02-dark.png' %}" width="473" alt="Image"><img class="d-none d-dark-mode-block" src="assets/img/landing/saas-2/steps/03-dark.png" width="473" alt="Image"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-xl-1 order-md-1" data-aos="fade-right" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md">
+              <div class="pe-md-4 pe-lg-0"><span class="badge fs-sm bg-faded-primary text-primary mb-3 mb-lg-4">Q3 - Q4 2023</span>
+                <h3 class="h2 mb-3 mb-lg-4">Further Development & Initial Mint</h3>
+                <ul>
+                  <li>Secure first golf course partnership</li>
+                  <li>Mint first Albatross NFT collection tied to real world utility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Arrow-->
+          <div class="d-none d-lg-flex justify-content-center" data-aos="fade-in" data-aos-duration="500" data-aos-offset="250">
+            <svg class="d-block text-primary" width="339" height="365" viewBox="0 0 339 365" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: -150px; margin-top: -140px; margin-bottom: -108px;">
+              <path d="M324 291.371C120.111 291.37 240.756 58.7225 1.00032 73.2606" stroke="url(#arrow1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"></path>
+              <path d="M337.375 290.62C338.074 290.998 338.074 292.001 337.375 292.379L328.476 297.196C327.81 297.557 327 297.074 327 296.317L327 286.683C327 285.925 327.81 285.443 328.476 285.803L337.375 290.62Z" fill="currentColor"></path>
+              <defs>
+                <linearGradient id="arrow1" x1="324" y1="291.5" x2="-2.99974" y2="72.4997" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="currentColor"></stop>
+                  <stop offset="1" stop-color="currentColor" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <!-- Step-->
+          <div class="row align-items-center position-relative pb-5 pb-lg-0 mb-1 mb-sm-2 mb-md-4 mb-lg-0">
+            <div class="col-md-6 col-xl-5 offset-lg-1 order-md-2 pb-2 pb-md-0 mb-4 mb-md-0" data-aos="fade-left" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md"><img class="d-dark-mode-none" src="{% static 'assets/img/landing/saas-2/steps/01-light.png' %}" width="525" alt="Image"><img class="d-none d-dark-mode-block" src="{% static 'assets/img/landing/saas-2/steps/01-dark.png' %}" width="525" alt="Image"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-xl-1 order-md-1" data-aos="fade-right" data-aos-duration="500" data-aos-offset="250" data-disable-parallax-down="md">
+              <div class="pe-md-4 pe-lg-0"><span class="badge fs-sm bg-faded-primary text-primary mb-3 mb-lg-4">Beyond 2023</span>
+                <h3 class="h2 mb-3 mb-lg-4">Expand Collections & Partnerships</h3>
+                <p class="pb-1 pb-lg-0 mb-4 mb-lg-5"><ul>
+                    <li>Iterate on brand, tech and product in a goal to partner with 5 golf courses by the end of 2025 all with different NFT collections</li>
+                    <li>First real world Albatross golf tournament for owner community</li>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+      <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+      </svg><i class="ai-arrow-up"></i></a>
+    <!-- Vendor scripts: js libraries and plugins-->
+    <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'node_modules/swiper/swiper-bundle.min.css' %}"></script>
+    <script src="{% static 'node_modules/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/dist/aos.js' %}"></script>
+    <!-- Main theme script-->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+  </body>
+  {% include 'partials/footer.html' %}
+</html>

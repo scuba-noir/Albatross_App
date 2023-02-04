@@ -1,0 +1,62 @@
+{% load static %}
+{% block content %}
+
+    <header class="navbar navbar-expand-lg fixed-top m-0">
+        <div class="container"><a class="navbar-brand" href="{% url 'homepage' %}">
+            <span class="text-primary flex-shrink-0 m-0">
+                <img src = "{%  static 'assets/img/golf-ball.png' %}" height = "25" width = "20">
+                Albatross</span></a>
+            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <nav class="collapse navbar-collapse mb-0" id="navbarNav">
+                <ul class="navbar-nav navbar-nav-scroll mb-0" style="--ar-scroll-height: 520px;">
+                <li class="nav-item mb-0"><div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Home
+                    </a>
+                
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" style="font-weight:bolder;" href="{% url 'homepage' %}">Homepage</a></li>
+                    <hr style="margin-left:5%; margin-right:5%;">
+                    <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_collections">Albatross Collections</a></li>
+                    <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_partners">Partners</a></li>
+                    <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_roadmap">Roadmap</a></li>
+                    </ul>
+                </div>
+                </li>
+                <li class="nav-item mb-0"><div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Technology
+                    </a>
+                    
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" style="font-weight:bolder;" href="{% url 'technology' %}">Technology Page</a></li>
+                        <hr style="margin-left:5%; margin-right:5%;">
+                        <li><a class="dropdown-item" href="{% url 'technology' %}#albatross_application">Application</a></li>
+                        <li><a class="dropdown-item" href="{% url 'technology' %}#albatross_guide">NFT Beginner Guide</a></li>
+                        <li><a class="dropdown-item" href="{% url 'technology' %}#albatross_faqs">FAQs</a></li>
+                        <li><a class="dropdown-item" href="{% url 'technology' %}#albatross_whitepaper">Whitepaper</a></li>
+                    </ul>
+                    </div>
+                </li>
+                    <li class="nav-item mb-0"><div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        About
+                    </a>
+                    
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" style="font-weight:bolder;" href="{% url 'about' %}">About Us</a></li>
+                        <hr style="margin-left:5%; margin-right:5%;">
+                        <li><a class="dropdown-item" href="{% url 'about' %}#albatross_story">Our Story</a></li>
+                        <li><a class="dropdown-item" href="{% url 'about' %}#albatross_environmentalcommitment">Our Environmental Commitment</a></li>
+                        <!--<li><a class="dropdown-item" href="{% url 'about' %}#albatross_story">Our Team</a></li>-->
+                        <li><a class="dropdown-item" href="{% url 'about' %}#albatross_events">Community Golf Tournaments</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <!--<li class="nav-item"><a class="nav-link" href="{% url 'merch_tent' %}">Merch Tent</a></li>-->
+                </ul>
+        </nav>
+        </div>
+    </header>
+
+{% endblock %}

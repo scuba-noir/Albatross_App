@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Albatross</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Albatross">
+    <meta name="author" content="Albatross Team">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="{% static 'assets/favicon/browserconfig.xml' %}">
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
+      let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+      if (mode !== undefined && mode === 'dark') {
+        root.classList.add('dark-mode');
+      } else {
+        root.classList.remove('dark-mode');
+      }
+      
+      
+    </script>
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color:rgb(240, 239, 222);
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .dark-mode .page-loading {
+        background-color: #121519;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
+      }
+      .dark-mode .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2; 
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      .dark-mode .page-spinner {
+        background-color: rgba(255,255,255,.25);
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+
+      * {box-sizing: border-box;}
+      body {font-family: Verdana, sans-serif;}
+      .mySlides {display: none;}
+      img {vertical-align: middle;}
+
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+        background-color: #121519;
+      }
+
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+
+      position: relative;
+      margin: auto;
+    }
+
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 6s;
+    }
+
+    @keyframes fade {
+      from {opacity: 0} 
+      to {opacity: 1}
+    }
+
+      /* On smaller screens, decrease text size */
+      @media only screen and (max-width: 300px) {
+        .text {font-size: 11px}
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 1500);
+        };
+      })();
+      
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="{% static 'node_modules/swiper/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/aos/dist/aos.css' %}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/css/theme.min.css' %}">
+  </head>
+  <!-- Body-->
+  <body>
+
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span><h4 style="color:white; font-weight:lighter;">Loading...</h4></span>
+      </div>
+    </div>
+    <!-- Page wrapper-->
+    <main class="page-wrapper">
+      {% include 'partials/navbar.html' %}      
+      <!-- Page content-->
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242);" id = "albatross_application">
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content">
+          <div class="row pt-1 justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family: Pacifico; font-weight: lighter;">Albatross Application</h1>
+            <hr style="color:#121519">
+          </div>
+          <div class="row align-items-center pt-5">
+            <div class="col-md-5 mb-md-0 pb-md-0">
+              <!-- Binded items -->
+              <div class="binded-content">
+                <!-- Item -->
+                <div id="item1" class="binded-item active">
+                  <div class="ratio ratio-4x3" style="background-color:rgb(245, 242, 242);">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <img src ="{% static 'assets/img/slideshow_1.jpg' %}" style = "height:100%; width:100%; border-radius:25%; opacity: 60%;"></img>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item -->
+                <div id="item2" class="binded-item">
+                  <div class="ratio ratio-4x3 bg-faded-success">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <i class="ai-image text-success opacity-80"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item -->
+                <div id="item3" class="binded-item">
+                  <div class="ratio ratio-4x3 bg-faded-warning">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
+                      <i class="ai-image text-warning opacity-80"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-7 ps-xl-5">
+
+              <!-- Swiper slider -->
+              <div class="swiper" data-swiper-options='{
+                "spaceBetween": 50,
+                "loop": true,
+                "bindedContent": true,
+                "navigation": {
+                  "prevEl": "#prev-btn",
+                  "nextEl": "#next-btn"
+                }
+              }'>
+                <div class="swiper-wrapper text-center text-md-start">
+
+                  <!-- Item -->
+                  <div class="swiper-slide text-center" data-swiper-binded="#item1" >
+                    <h4> Coming Soon</h4>
+                    <p>Albatross application set for release in early 2023</p>
+                  </div>
+
+                </div>
+              
+              </div>
+            </div>
+          </div>
+          <div id = "albatross_guide"></div>
+        </div>
+      </section>
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(240, 239, 222);">
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;background-color:rgb(240, 239, 222);">
+          <div class="row pb-2 justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter;">NFT Beginner Guide</h1>
+            <hr style="color:#121519">
+          </div>
+          <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a href="#home" class="nav-link active" data-bs-toggle="tab" role="tab">
+                  <i class="fi-home me-2"></i>
+                  Wallet Creation & Setup
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#profile" class="nav-link" data-bs-toggle="tab" role="tab">
+                  <i class="fi-user me-2"></i>
+                  How to Connect with Albatross
+                </a>
+              </li>
+              
+            </ul>
+
+            <!-- Tabs content -->
+            <div class="tab-content" style="background-color:transparent;">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" style="background-color:transparent;">
+                <div class="row">
+                <div class = "col" style="text-align:center; align-items: center;">
+                  <h4 style="margin-top:20%;">NFT Wallet Tutorial</h4>
+                  <p style="vertical-align: middle;">In this video we will be going over a step by step guide on how to start collecting NFTs, we will be using a Metamask wallet and I will explain the entire process from start to finish for you, so you can start collecting your NFT's today!</p>
+                  <br>
+                </div>
+                <div class ="col">
+                  <iframe height="400" src="https://www.youtube.com/embed/DNXhxraVaKM" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel">
+                <div class = "col" style="text-align:center; align-items: center;">
+                  <h4 style="background-color: rgb(240, 239, 222);">Coming Soon!</h4>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="messages" role="tabpanel">
+                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu.</p>
+              </div>
+            </div>
+          </div>
+          <div id = "albatross_whitepaper"></div>
+        </div>
+      </section>
+
+        <section class="container-fluid mt-2 py-3 px-sm-4 px-md-5" style="background-color:#37715d;">
+          <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content; background-color:#37715d;">
+            <div class="row pb-2 justify-content-center">
+              <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter; color:rgb(219, 213, 213)">Whitepaper</h1>
+              <hr style="color:rgb(219, 213, 213)">
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-4 text-center text-md-start">
+                <h2 class="h1" style="color:rgb(219, 213, 213)">Read our whitepaper</h2>
+                <div class="d-none d-md-flex justify-content-center">
+                  <svg class="text-warning ms-n4" width="200" height="211" viewBox="0 0 200 211" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M198.804 194.488C189.279 189.596 179.529 185.52 169.407 182.07L169.384 182.049C169.227 181.994 169.07 181.939 168.912 181.884C166.669 181.139 165.906 184.546 167.669 185.615C174.053 189.473 182.761 191.837 189.146 195.695C156.603 195.912 119.781 196.591 91.266 179.049C62.5221 161.368 48.1094 130.695 56.934 98.891C84.5539 98.7247 112.556 84.0176 129.508 62.667C136.396 53.9724 146.193 35.1448 129.773 30.2717C114.292 25.6624 93.7109 41.8875 83.1971 51.3147C70.1109 63.039 59.63 78.433 54.2039 95.0087C52.1221 94.9842 50.0776 94.8683 48.0703 94.6608C30.1803 92.8027 11.2197 83.6338 5.44902 65.1074C-1.88449 41.5699 14.4994 19.0183 27.9202 1.56641C28.6411 0.625793 27.2862 -0.561638 26.5419 0.358501C13.4588 16.4098 -0.221091 34.5242 0.896608 56.5659C1.8218 74.6941 14.221 87.9401 30.4121 94.2058C37.7076 97.0203 45.3454 98.5003 53.0334 98.8449C47.8679 117.532 49.2961 137.487 60.7729 155.283C87.7615 197.081 139.616 201.147 184.786 201.155L174.332 206.827C172.119 208.033 174.345 211.287 176.537 210.105C182.06 207.125 187.582 204.122 193.084 201.144C193.346 201.147 195.161 199.887 195.423 199.868C197.08 198.548 193.084 201.144 195.528 199.81C196.688 199.192 197.846 198.552 199.006 197.935C200.397 197.167 200.007 195.087 198.804 194.488ZM60.8213 88.0427C67.6894 72.648 78.8538 59.1566 92.1207 49.0388C98.8475 43.9065 106.334 39.2953 114.188 36.1439C117.295 34.8947 120.798 33.6609 124.168 33.635C134.365 33.5511 136.354 42.9911 132.638 51.031C120.47 77.4222 86.8639 93.9837 58.0983 94.9666C58.8971 92.6666 59.783 90.3603 60.8213 88.0427Z" fill="currentColor"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="col-md-8 col-lg-7 offset-lg-1">
+                <div class="accordion" id="faq">
+                  <div class="accordion-item bg-light">
+                    <h3 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-expanded="true" aria-controls="questionOne">Overview</button>
+                    </h3>
+                    <div class="accordion-collapse collapse show" id="questionOne" aria-labelledby="headingOne" data-bs-parent="#faq">
+                      <div class="accordion-body fs-sm">
+                        <p>Albatross aims to connect the worldwide golf community to prestigious golf courses around the world in a way that has never been possible before. Our mission is to give our community members unprecedented utility at our partnered golf courses/resorts that otherwise would not be available. In partnership with prestigious golf courses, we plan to release NFT’s that will allow owners to participate in special events, enjoy exclusive discounts, benefit from early access to items, network with other community members and own unique digital pieces of art. We aim to foster a community of golf enthusiasts by giving them a platform to share their experiences, stories and passion with others.</p>
+                        <p>We are the first project centered in bringing holders real life utility at top golf courses around the world through partnership. Albatross aims to connect the Web2 community to the Web3 community through golf. While owning an NFT might seem an unfamiliar concept to some consumers, we aim to make the process of ownership seamless for all. We plan to grow a community of golf enthusiasts that will enjoy perks and access to a network of top tier golf courses around the world.</p>
+                        <p>Albatross NFT collections are not just another JPEG NFT project. The utility with courses, brands, and organizations are one of a kind in the market. The possibilities for owners are endless as Albatross will continue to expand to golf courses around the world and add utility to existing collections.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item bg-light">
+                    <h3 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionTwo" aria-expanded="false" aria-controls="questionTwo">The Opportunity</button>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="questionTwo" aria-labelledby="headingTwo" data-bs-parent="#faq">
+                      <div class="accordion-body fs-sm">
+                        <p>Golf courses/resorts have yet to take advantage of the opportunity to step into the digital world of NFTs. In doing so, courses and resorts are missing out on the opportunity to connect to golfers in an innovative fashion, increase brand recognition and offer a more unique experience. In partnership with Albatross, golf courses/resorts will reap the benefits of their hard work and labor without changing any major processes in place. The world's golf architects, designers and golf pros work endlessly to provide an experience unlike any other at their respective courses. Yet, as the staff works to provide a one of a kind physical experience for guests, they rarely can offer a unique digital interaction.</p>
+                        <p>As transactions and experiences increasingly expand digitally everyday, there is an opportunity for golf courses/resorts to take advantage of their position and communities. Collaborative efforts between the courses/resorts and Albatross allows golfers to be more connected to courses than ever before. Furthermore, there is little interaction between courses/resorts to their guests off their property. Our community will be a place where courses/resort staff can gather feedback, ask questions and learn from customer experiences.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item bg-light">
+                    <h3 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionThree" aria-expanded="false" aria-controls="questionThree">The State of Golf</button>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="questionThree" aria-labelledby="headingThree" data-bs-parent="#faq">
+                      <div class="accordion-body fs-sm">
+                       <p>The worldwide golf community is in a great place. While the pandemic of COVID-19 was awful for most reasons, it had a positive impact on the amount of people wanting to play golf because of its natural elements. In the US in 2021 alone, the National Golf Foundation estimated 106 million people (one out of every three Americans age 6+) played golf (on or off-course), followed golf on television or online, read about the game, or listened to a golf related podcast. 2021 also holds the record for the most people who played golf on a physical golf course for the first time - 3.2 million people.</p>
+                       <p>Furthermore, the category of young adults (18-34 year olds) held strong as golf’s biggest customer age segment, with 6.1 Million on-course participants and another 4.8 Million off-course only participants. This age demographic has consistently been the most active non-professional group of golfers over the last decade. In addition, 17.8 Million people who didn’t play golf in 2021 said they are "very interested" in playing golf on a golf course. That is almost a 20% increase in the pool of potential golfers over the past five years. It can be argued that golf is in the greatest state in its over 200 year lifetime with a constant influx of young golfers picking up the game.</p>
+
+                      </div>
+                  </div>
+                  </div>
+                  <div class="accordion-item bg-light">
+                    <h3 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFour" aria-expanded="false" aria-controls="questionFour">Community Demographic</button>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="questionFour" aria-labelledby="headingFour" data-bs-parent="#faq">
+                      <div class="accordion-body fs-sm">
+                        <p>Albatross estimates young adults (18-34 year olds) to be its primary community demographic as that age group is most affluent in the cryptocurrency community at the time of writing this whitepaper. However, one does not have to be knowledgeable about NFTs and cryptocurrency to own an Albatross NFT or be a part of the Albatross community. Albatross will bridge the gap for consumers who are new to the NFT space as they learn the benefits of owning an NFT with real world utility. Golf utility will be the connecting factor that brings consumers of all ages and crypto expertise levels. The NFTs serve as a vessel for these consumers to uniquely express themselves, show their admiration for the course/resort and connect with other community members. Maturity both in the NFT market and our community will continually foster an environment for first time or experienced NFT buyers. For this reason, Albatross community demographics will only grow with maturity day by day, project by project.</p>
+                        <ol>
+                          <li>                  
+                            <p style="font-weight:bolder;">Building the Community</p>
+                            <p>What’s amazing about building the Albatross community is that there is already a large community of golf enthusiasts out there. Golfers constantly rave about the amenities of their golf course whether it be perks in the clubhouse or the layout of their favorite hole. Golfers on social media, writers for magazines and journalists for golf publications capture the unique features of each course through pictures, articles and stories. Albatross will tap into this network of golf enthusiasts and be proactive in the community to make sure every member is heard and represented. Understanding what is most important to the community is something Albatross takes into account. Deciding on which courses Albatross should partner with, what utility is offered and what other benefits holders should get will largely be decided by the community through open forums and channels (primarily discord, instagram and twitter).</p>
+                            <p>Albatross will also hold community specific golf tournaments and events around the world at partner courses. This will allow community members to play some of the greatest courses in the world with fellow community members. We truly will embrace bringing the URL to IRL with the game of golf.</p>
+                          </li>
+                          <li>
+                            <p style="font-weight:bolder;">Partnerships</p>
+                            <p>The multiple partnerships of Albatross propel the community forward and drive value for holders and partners. This includes partnerships with our reputable (1) golf course photographer (TBD), (2) high quality brand partners and (3) golf courses/resorts.</p>
+                            <ol>
+                              <li>
+                                <p>As NFTs are often viewed as digital works of art, we want to provide owners the opportunity to own illustrious photographs from an acclaimed golf course photographer. (TBD)’s photographs are one of a kind digital pieces that capture beautiful holes, clubhouses and landscapes around our partner’s courses. Owning a unique digital photograph of theirs is valuable in its own right, but when it is paired with real world utility at the course, it brings the owners value above and beyond expectations.</p>
+                              </li>
+                              <li>
+                                <p>Being an Albatross collection holder goes beyond the utility of having value at the course. Our brand partners will give owners the opportunity to enjoy exclusive discounts, gain access to the early release of goods, custom apparel and more. As Albatross matures in the golf and crypto community, we will continue to establish exclusive partnerships with top manufacturers, producers, influencers and more to provide value for our customers.</p>
+                              </li>
+                              <li>
+                                <p>The partnership with golf courses/resorts are vital for community success. Albatross and the golf courses/resorts will enjoy a mutually beneficial relationship both in the short and long term. The golf courses/resorts will benefit from the Albatross partnership for multiple reasons:</p>
+                                <ul>
+                                  <li>Additional Revenue and financial opportunity</li>
+                                  <li>Additional advertising and marketing at no extra cost</li>
+                                  <li>Differentiate itself in the market beyond other prestigious golf courses</li>
+                                  <li>Ability to reach a younger audience that will be the future golfers of America (18-35 year olds)</li>
+                                  <li>Connect to guests in a new way and receive direct feedback from guests</li>
+                                  <li>Improve customer experience by learning from community social outlets (Discord, Twitter, etc.)</li>
+                                  <li>Be one of the first entrants in a novel market</li>
+                                  <li>Future partnerships with other brands and courses will only increase the value and rarity of the collections</li>
+                                  <li>A chance to give back to dedicated employees of your organizations and surrounding community</li>
+                                </ul>
+                              </li>
+                            </ol>
+                          </li>
+                          <br>
+                          <li>
+                            <p style="font-weight:bolder;">Expansion and Iteration</p>
+                            <p>As Albatross takes on the first partnerships and begins to grow the initial community, the opportunities are endless. Opportunities to expand and implement the process at other golf courses/resorts. Opportunities to partner with other NFT projects. Opportunities to partner with other brands and sponsors. Opportunities to get involved at a more professional level with the PGA Tour, professional golfers and worldwide leaders in the sport. Opportunities to apply our technology into other industries. A lot of this expansion will be driven by community ideas. When we say endless, we mean it! We will never stop innovating for and with our community.</p>
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item bg-light">
+                    <h3 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#questionFive" aria-expanded="false" aria-controls="questionFive">Environmental Committment</button>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="questionFive" aria-labelledby="headingFive" data-bs-parent="#faq">
+                      <div class="accordion-body fs-sm">
+                        <p>Albatross is committed to sustainability and improving the health of the planet. As our partnered courses are deeply embedded into nature, we aim to assist in any conservation efforts they might undertake on and off their properties. To show our commitment to the cause, we pledge that 5% of all revenues from each initial collection sale will go to charities/organizations focused around the preservation of the environment. The recipient(s) of the money raised will be decided in collaboration with our golf course partners and the Albatross community.</p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+   
+
+
+    </main>
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+      <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+      </svg><i class="ai-arrow-up"></i></a>
+    <!-- Vendor scripts: js libraries and plugins-->
+    <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'node_modules/swiper/swiper-bundle.min.css' %}"></script>
+    <script src="{% static 'node_modules/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/dist/aos.js' %}"></script>
+    <!-- Main theme script-->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+  </body>
+  
+  {% include 'partials/footer.html' %}
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Albatross</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Albatross">
+    <meta name="author" content="Albatross Team">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="{% static 'assets/favicon/browserconfig.xml' %}">
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
+      let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+      if (mode !== undefined && mode === 'dark') {
+        root.classList.add('dark-mode');
+      } else {
+        root.classList.remove('dark-mode');
+      }
+      
+      
+    </script>
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .dark-mode .page-loading {
+        background-color: #121519;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
+      }
+      .dark-mode .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2; 
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      .dark-mode .page-spinner {
+        background-color: rgba(255,255,255,.25);
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 1500);
+        };
+      })();
+      
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="{% static 'node_modules/swiper/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/aos/dist/aos.css' %}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/css/theme.min.css' %}">
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <!-- Page wrapper-->
+    <main class="page-wrapper">
+      <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+      <header class="navbar navbar-expand-lg fixed-top">
+        <div class="container"><a class="navbar-brand pe-sm-3" href="homepage.html"><span class="text-primary flex-shrink-0 m-0">
+                  <img src = "{%  static 'assets/img/golf-ball.png' %}" height = "25" width = "20">
+                Albatross</span></a>
+          <a class="btn btn-primary btn-sm rounded-pill fs-sm order-lg-3 d-none d-sm-inline-flex" href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank" rel="noopener"><i class="ai-lock-closed fs-xl me-2 ms-n1"></i>User Login</a>
+          <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+          <nav class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+              <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="#how-us">Albatross Pillars</a></li>
+              <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
+              <li class="nav-item"><a class="nav-link" href="#whitepaper">Whitepaper</a></li>
+            </ul>
+            <div class="d-sm-none p-3 mt-n3"><a class="btn btn-primary w-100  mb-1" href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank" rel="noopener"><i class="ai-lock-closed fs-xl me-2 ms-n1"></i>User Login</a></div>
+          </nav>
+        </div>
+      </header>
+      <!-- Page content-->
+        <!-- Page content -->
+        <div class="page-content" style="height:500px; width:100%; padding:10%;">
+
+            <!-- Main content -->
+            <div class="content-wrapper" style="background-color: rgb(255, 255, 255);">
+
+                <!-- Inner content -->
+                <div class="content-inner">
+
+                    <!-- Content area -->
+                    <div class="content">
+                        <div class="card" style="justify-content:center; border: 0; box-shadow: none;">
+                            <div class = "card-body text-center">
+                            <h5>Username: <input></input></h5>
+                            <h5>Password: <input type="password"></input></h5>
+                            <br>
+                            <a class="btn btn-teal" href="{% url 'user_profile'  %}">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /content area -->
+
+
+                </div>
+                <!-- /inner content -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+
+ 
+    </main>
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+      <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+      </svg><i class="ai-arrow-up"></i></a>
+    <!-- Vendor scripts: js libraries and plugins-->
+    <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'node_modules/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/dist/aos.js' %}"></script>
+    <!-- Main theme script-->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+  </body>
+</html>
