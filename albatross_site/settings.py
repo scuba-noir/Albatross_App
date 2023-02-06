@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['18.191.234.124','albatrossgolf.io','www.albatrossgolf.io']
 
 
 # Application definition
