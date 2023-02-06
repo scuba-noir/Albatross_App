@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 from pathlib import Path
 
@@ -21,15 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xf6kh0s*0kxog4!=*srsd&@(alz7003ogq^t87+pj-9e#ohdt9'
-#try:
-#    SECRET_KEY = os.environ["SECRET_KEY"]
-#except KeyError as e:
-#    raise RuntimeError("Could not find a SECRET_KEY in environment") from e
-    
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 
 ALLOWED_HOSTS = ["*"]
@@ -47,9 +47,6 @@ INSTALLED_APPS = [
     'albatross_app'
 ]
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,7 +59,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'albatross_app.urls'
-LOGIN_REDIRECT_URL = 'user_profile'
 
 TEMPLATES = [
     {
@@ -86,10 +82,14 @@ WSGI_APPLICATION = 'albatross_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES ={
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DB_NAME'),
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
     }
 }
 
