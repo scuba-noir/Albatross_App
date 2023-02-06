@@ -11,27 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-import environ
-
-env = environ.Env(
-    # Environment Variables
-    SECRET_KEY='70e8a68b4a65b6a0717ac5ecc3406d179dc826e17cf147978f837e908026172cc7c43669889c861b'
-    DEBUG=True
-
-    ALLOWED_HOSTS=*
-
-    # Database connection string
-    DB_NAME=demo
-    DB_USER=admin
-    DB_PASSWORD=admin
-
-    DB_HOST=localhost
-    # Email Configuration
-    EMAIL_HOST=email_host_name
-    EMAIL_HOST_USER=your_email
-    EMAIL_HOST_PASSWORD=your_email_password
-    EMAIL_PORT=port_number
-)
 
 from pathlib import Path
 
@@ -41,12 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+SECRET_KEY='70e8a68b4a65b6a0717ac5ecc3406d179dc826e17cf147978f837e908026172cc7c43669889c861b'
+DEBUG=True
 
 
 ALLOWED_HOSTS = ['18.191.234.124','albatrossgolf.io','www.albatrossgolf.io']
