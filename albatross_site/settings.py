@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-xf6kh0s*0kxog4!=*srsd&@(alz7003ogq^t87+pj-9e#ohdt9
 DEBUG = True
 
 
-ALLOWED_HOSTS = [".albatrossgolf.io"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
