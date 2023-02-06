@@ -27,8 +27,10 @@ try:
 except KeyError as e:
     raise RuntimeError("Could not find a SECRET_KEY in environment") from e
     
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
 
 ALLOWED_HOSTS = ['3.12.107.31:8000', '3.135.202.90','https://3.135.202.90/']
 
