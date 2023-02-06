@@ -13,8 +13,25 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import environ
 
-env = environ.Env()
-environ.Env.read_env()
+env = environ.Env(
+    # Environment Variables
+    SECRET_KEY='70e8a68b4a65b6a0717ac5ecc3406d179dc826e17cf147978f837e908026172cc7c43669889c861b'
+    DEBUG=True
+
+    ALLOWED_HOSTS=*
+
+    # Database connection string
+    DB_NAME=demo
+    DB_USER=admin
+    DB_PASSWORD=admin
+
+    DB_HOST=localhost
+    # Email Configuration
+    EMAIL_HOST=email_host_name
+    EMAIL_HOST_USER=your_email
+    EMAIL_HOST_PASSWORD=your_email_password
+    EMAIL_PORT=port_number
+)
 
 from pathlib import Path
 
