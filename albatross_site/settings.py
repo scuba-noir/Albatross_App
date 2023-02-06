@@ -32,7 +32,7 @@ except KeyError as e:
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['3.12.107.31:8000', '3.135.202.90','https://3.135.202.90/', ".albatrossgolf.io"]
+ALLOWED_HOSTS = [".albatrossgolf.io"]
 
 
 # Application definition
