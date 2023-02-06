@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'albatross_site.wsgi.application'
 DATABASES ={
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DB_NAME'),
+        'NAME': 'demo',
         'HOST': 'localhost',
         'PORT': '3306',
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
+        'USER': 'admin',
+        'PASSWORD': 'admin'
     }
 }
 
