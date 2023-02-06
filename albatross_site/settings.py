@@ -24,7 +24,7 @@ SECRET_KEY='70e8a68b4a65b6a0717ac5ecc3406d179dc826e17cf147978f837e908026172cc7c4
 DEBUG=True
 
 
-ALLOWED_HOSTS = ['18.191.234.124','albatrossgolf.io','www.albatrossgolf.io','ec2-18-191-234-124.us-east-2.compute.amazonaws.com']
+ALLOWED_HOSTS = ['3.137.26.181','albatrossgolf.io','www.albatrossgolf.io','ec2-18-191-234-124.us-east-2.compute.amazonaws.com']
 
 
 # Application definition
