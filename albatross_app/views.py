@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, Http404, FileResponse
 from albatross_app.forms import contactForm
+from albatross_site import settings
+
+import os
 
 def index(request):
 
@@ -52,3 +56,12 @@ def merch_tent(request):
     
     context = {}
     return render(request, 'pages/merch_tent.html', context = context)
+
+def open_file(request):
+
+    file_path = 'staticfiles/assets/pdf/albatross_whitepaper.pdf'
+    print(os.getcwd())
+    print(file_path)
+    file = open(file_path, 'rb')
+    return FileResponse(file, as_attachment=True, filename='albatross_whitepaper.pdf')
+  

@@ -11,4 +11,5 @@ urlpatterns = [
     path('about/', views.about, name="about"),
     path('merch_tent/', views.merch_tent, name="merch_tent"),
     path('admin/', admin.site.urls),
+    path('open/path/', views.open_file, name='open-file')
 ]

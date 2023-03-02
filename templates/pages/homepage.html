@@ -31,6 +31,10 @@
     </script>
     <!-- Page loading styles-->
     <style>
+
+
+
+
       .page-loading {
         position: fixed;
         top: 0;
@@ -130,13 +134,6 @@
       }
 
 
-    /* Slideshow container */
-    .slideshow-container {
-      max-width: 1000px;
-
-      position: relative;
-      margin: auto;
-    }
 
     /* Caption text */
     .text {
@@ -187,6 +184,15 @@
     /* On smaller screens, decrease text size */
     @media only screen and (max-width: 300px) {
       .text {font-size: 11px}
+    }
+
+    @media only screen and (max-width: 1000px) {
+        #fadeshow1 {
+            display: none;
+        }
+        #fadeshow2 {
+          display: none;
+        }
     }
 
     .modal_fade {
@@ -248,17 +254,17 @@
                 <p class="fs-xl text-left text-lg-start pb-2 pb-md-0 mb-4 mb-md-5">Connecting the worldwide golf community to prestigious golf courses through new technologies</p>
                 <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-lg-start pb-3 pb-sm-5"><a class="btn btn-lg btn-primary rounded-pill w-100 w-sm-auto me-sm-3 me-xl-4 mb-2 mb-sm-0" data-bs-toggle = "modal" data-bs-target="#exampleModal">Contact Our Team</a><a class="btn btn-lg btn-link text-white w-100 w-sm-auto px-2" href="{% url 'technology' %}#albatross_whitepaper">Whitepaper<i class="ai-arrow-right ms-2"></i></a></div>
               </div>
-              <div class="col-lg slideshow-container mb-2" style="height: 400px; background-color: transparent;">
+              <div class="col-lg slideshow-container mb-2" style="background-color: transparent;" id = "fadeshow1">
                   <div class="mySlides fade pb-2">
-                    <img src="{% static 'assets/img/slideshow_1.jpg' %}" style="width:100%; height:400px; border-radius: 20%;">
+                    <img src="{% static 'assets/img/slideshow_1.jpg' %}" style="margin:auto; border-radius: 20%;">
                     <br>
                   </div>
                   <div class="mySlides fade pb-2">
-                    <img src="{% static 'assets/img/slideshow_2.jpeg' %}" style="width:100%; height: 400px; border-radius: 20%;">
+                    <img src="{% static 'assets/img/slideshow_2.jpeg' %}" style="margin:auto; border-radius: 20%;">
                     <br>
                   </div>                 
                   <div class="mySlides fade pb-2">
-                    <img src="{% static 'assets/img/slideshow_3.jpeg' %}" style="width:100%; height: 400px; border-radius: 20%;">
+                    <img src="{% static 'assets/img/slideshow_3.jpeg' %}" style="margin:auto; border-radius: 20%;">
                     <br>
                   </div>
                   
@@ -334,22 +340,23 @@
 
       </section> 
 
-      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242);">
-        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content; background-color:transparent;">
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242); max-height:800px;">
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; background-color:transparent;">
           <div class="row pt-1 justify-content-center">
             <h1 style="margin: left 4px; text-align: left; font-family: Pacifico; font-weight: lighter;">Welcome to the Albatross Community</h1>
             <hr style="color:#121519">
           </div>
-          <div class="row" style="max-height: 350px;">
-            <div class="col pt-1 pb-1" style="max-height: fit-content;">
+          <div class="row">
+            <div class="col pt-1 pb-1">
               <br>
               <p>We plan to partner with a collection of the best golf courses around the world to offer exclusive benefits. These benefits include the ability for owners to participate in special IRL events, enjoy exclusive discounts, benefit from early access to items, network with other community members and own unique digital pieces of art. We aim to foster a community of golf enthusiasts by giving them a platform to share their experiences, stories and passion with others.</p>
               <p>Follow our social media accounts for roadmap and community updates!</p>
-              <div class="d-flex"><a class="btn btn-icon btn-sm btn-secondary rounded-circle me-3" href="https://twitter.com/Albatross_LLC"><i class="ai-twitter"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="https://www.instagram.com/albatrossgolf.io/?hl=en"><i class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle" href="#"><i class="ai-discord"></i></a></div>
+              <div class="d-flex"><a class="btn btn-icon btn-sm btn-secondary rounded-circle me-3" href="https://twitter.com/Albatross_LLC" target="_blank"><i class="ai-twitter"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="https://www.instagram.com/albatrossgolf.io/?hl=en" target="_blank"><i class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle" href="#" target="_blank"><i class="ai-discord"></i></a></div>
             </div>
-            <div class="col text-center" style="max-height:fit-content;">
-              <img src="{% static 'assets/img/albatross_gif_2.gif' %}" style="height:80%; margin-top:0px; margin-bottom: 0px; background-color:rgb(245, 242, 242);">
-              
+            <div class="col" id = "fadeshow2">
+              <div style="display: flex; justify-content: center; max-height: 400px;">
+                <img src="{% static 'assets/img/albatross_gif_2.gif' %}" style="height:40%; margin-top:0px; margin-bottom: 0px; background-color:rgb(245, 242, 242);">
+              </div>
             </div>
           </div>
         </div><div id = "albatross_collections"></div>
@@ -359,7 +366,7 @@
         <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;background-color:rgb(240, 239, 222);">
           <div class="row justify-content-center">
             <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter;">Albatross Collections</h1>
-            <p class="text-left">Our golf course and brand partners will allow community members to take advantage of real world utility</p>
+            <p class="text-left">Our collections offer real world utility at our partnered courses and brands. More information on collections coming in 2023!</p>
             <hr style="color:#121519">
           </div>
 
@@ -513,7 +520,7 @@
                 <h3 class="h2 mb-3 mb-lg-4">Team Building and Initial Tech Development</h3>
                 <p class="pb-1 pb-lg-0 mb-4 mb-lg-5"><ul>
                     <li>Finalize team size, members and roles ahead of 2023</li>
-                    <li>Develope Albatross application version 1.0 to support utility functions</li>
+                    <li>Develop Albatross application version 1.0 to support utility functions</li>
                     <li>Begin development of Web3 technologies needed to support community</li>
 
               </div>
