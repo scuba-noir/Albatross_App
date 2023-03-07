@@ -26,7 +26,7 @@ SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['3.137.26.181','albatrossgolf.io','www.albatrossgolf.io','ec2-18-191-234-124.us-east-2.compute.amazonaws.com', '127.0.0.1', '3.142.10.48']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
