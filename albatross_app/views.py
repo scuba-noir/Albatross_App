@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, FileResponse
 from albatross_app.forms import contactForm
 from albatross_site import settings
+from django.views.decorators.csrf import csrf_protect
 
 import os
 
@@ -9,6 +10,7 @@ def index(request):
 
     return redirect(homepage)
 
+@csrf_protect
 def homepage(request):
 
     context = {}

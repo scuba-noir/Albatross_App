@@ -21,9 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 SECRET_KEY='70e8a68b4a65b6a0717ac5ecc3406d179dc826e17cf147978f837e908026172cc7c43669889c861b'
-DEBUG= True
+DEBUG= False
 
-ALLOWED_HOSTS = ['3.142.10.48','albatrossgolf.io','www.albatrossgolf.io']
+ALLOWED_HOSTS = ['3.142.10.48','albatrossgolf.io','www.albatrossgolf.io','127.0.0.1']
 
 
 # Application definition
