@@ -3,8 +3,11 @@ from django.http import HttpResponse, Http404, FileResponse
 from albatross_app.forms import contactForm
 from albatross_site import settings
 from django.views.decorators.csrf import csrf_protect
+from django.core.mail import send_mail
 
 import os
+
+
 
 def index(request):
 
@@ -22,8 +25,17 @@ def homepage(request):
         if form_post.is_valid():
             
             form_post.data = form_post.cleaned_data
+            email_string = "Email: " + str(form_post.data.email) + "\n" + "Message: " + str(form_post.data.message)
             form_post.full_clean()
             form_post.save()
+            send_mail(
+                subject='New Contact Form Submission',
+                message=email_string,
+                from_email="cthompson@albatrossgolf.io",
+                auth_user='cthom909',
+                auth_password='Ktr321ugh!',
+                recipient_list=['cthompson@albatrossgolf.io']
+            )
 
             return redirect('homepage')
 
