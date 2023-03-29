@@ -187,6 +187,17 @@
       @media only screen and (max-width: 300px) {
         .text {font-size: 11px}
       }
+
+    @media only screen and (max-width: 1000px) {
+
+        #col-fall-1 {
+          display: none;
+          width: 0;
+        }
+        #col-gain-1 {
+          width: 100%;
+        }
+    }
       
     </style>
     <!-- Page loading scripts-->
@@ -233,7 +244,7 @@
             <hr style="color:#121519">
           </div>
           <div class="row align-items-center pt-5">
-            <div class="col-md-5 mb-md-0 pb-md-0">
+            <div class="col-md-5 mb-md-0 pb-md-0" id="col-fall-1">
               <!-- Binded items -->
               <div class="binded-content">
                 <!-- Item -->
@@ -265,7 +276,7 @@
               </div>
             </div>
             
-            <div class="col-md-7 ps-xl-5">
+            <div class="col-md-7 ps-xl-5" id="col-gain-1">
 
               <!-- Swiper slider -->
               <div class="swiper" data-swiper-options='{
