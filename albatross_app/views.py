@@ -25,16 +25,15 @@ def homepage(request):
         if form_post.is_valid():
             
             form_post.data = form_post.cleaned_data
-            email_string = "Email: " + str(form_post.data.email) + "\n" + "Message: " + str(form_post.data.message)
+            email_string = "Email: " + str(form_post.data['email']) + "\n" + "Message: " + str(form_post.data['message'])
             form_post.full_clean()
             form_post.save()
+            print(form_post.data)
             send_mail(
                 subject='New Contact Form Submission',
                 message=email_string,
                 from_email="cthompson@albatrossgolf.io",
-                auth_user='cthom909',
-                auth_password='Ktr321ugh!',
-                recipient_list=['cthompson@albatrossgolf.io']
+                recipient_list=['cthompson@albatrossgolf.io','nickmills@albatrossgolf.io','timothymusick@albatrossgolf.io ']
             )
 
             return redirect('homepage')
