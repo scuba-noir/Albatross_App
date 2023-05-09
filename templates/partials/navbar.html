@@ -1,8 +1,8 @@
 {% load static %}
 {% block content %}
 
-    <header class="navbar navbar-expand-lg fixed-top m-0" style="max-height: 100;">
-        <div class="container"><a class="navbar-brand" href="{% url 'homepage' %}">
+    <header class="navbar navbar-expand-md bg-dark fixed-top m-0 p-0" style="max-height:min-content;">
+        <div class="container mx-0" style="justify-content: left;"><a class="navbar-brand" href="{% url 'homepage' %}">
             <span class="text-primary flex-shrink-0 m-0" style="display: flex; align-items: center; font-family:Pacifico; font-size:large;">
                 <img src = "{% static 'assets/img/icon-alb-3.png' %}" height = "70" width = "70" style="margin: auto; margin-right: 4px;">
                   Albatross</span></a>
@@ -10,12 +10,12 @@
             <nav class="collapse navbar-collapse mb-0" id="navbarNav">
                 <ul class="navbar-nav navbar-nav-scroll mb-0" style="--ar-scroll-height: 520px;">
                 <li class="nav-item mb-0"><div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent; color: white;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     Home
                     </a>
                 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" style="font-weight:bolder;" href="{% url 'homepage' %}">Homepage</a></li>
+                    <li><a class="dropdown-item" style="font-weight:bolder; " href="{% url 'homepage' %}">Homepage</a></li>
                     <hr style="margin-left:5%; margin-right:5%;">
                     <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_collections">Albatross Collections</a></li>
                     <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_partners">Partners</a></li>
@@ -24,7 +24,7 @@
                 </div>
                 </li>
                 <li class="nav-item mb-0"><div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent; color: white;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         Technology
                     </a>
                     
@@ -38,7 +38,7 @@
                     </div>
                 </li>
                     <li class="nav-item mb-0"><div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent; color: white;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         About
                     </a>
                     
