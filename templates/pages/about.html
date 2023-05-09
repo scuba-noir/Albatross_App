@@ -225,41 +225,42 @@
       {% include 'partials/navbar.html' %}      
       <!-- Page content-->
 
-      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242);" id = "albatross_story">
+      <div id = "albatross_team"></div>
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242);" id = "albatross_team">
         <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content; background-color:rgb(245, 242, 242);">
           <div class="row pt-1 justify-content-center">
-            <h1 style="margin: left 4px; text-align: left; font-family: Pacifico; font-weight: lighter;">Our Story</h1>
+            <h1 style="margin: left 4px; text-align: left; font-family: Pacifico; font-weight: lighter;">Our Team</h1>
             <hr style="color:#121519">
           </div>
-          <div class="row pt-5">
-            <div class="col">
-              <p>The story of Albatross started as our founder Nick Mills began preparing for a 24 man father son trip to Bandon Dunes Golf Resort in September of 2022. His preparation consisted of watching hours of videos on Youtube to prepare himself for the intricacies of each course and reading “The Nature of the Game: Links Golf at Bandon Dunes and Far Beyond”, Mike Keiser’s second novel. As he watched and learned more about what to expect on his trip to arguably one of the greatest golf resorts ever created, he looked for ways to connect to the resort off property.</p>
-              <p>During this time in early to mid 2022, popular sports franchises, leagues and athletes continued to become more infatuated with utilizing NFTs in their own way. While Nick had always been interested in cryptocurrencies and NFTs, he never thought he would get involved in the space in a professional capacity. Until an idea popped into his head. Why not give the opportunity for the common golfer to own a unique piece of some of the greatest golf courses ever created? And thus, Albatross was born.</p>
-              <p>Albatross started in late 2022 with a simple mission in mind: “To connect the worldwide golf community to prestigious golf courses around the world in a way that has never been possible before.” Challenges for Albatross have popped up behind every corner. Who will be on the team? Who will we target as a partner? How will we build the community of golf enthusiasts? The list of challenges was never ending. As we pushed to tackle each obstacle, we realized what an incredible idea we had. Each golf course around the world, whether it be a local muni in a town of 10,000 people or a top 100 golf course in the world has admirers of all kinds for its kinks and triumphs. We realized we could provide value for both the common golfer and the golf course by offering our services and partnership to them respectfully. All the while satisfying our pledged duty to give back to the environments surrounding each of our partnered courses. As Albatross moves forward to create a network of partnered courses around the world, we strive to grow our community and recognize their wishes in attempts to connect to the courses in unprecedented ways.</p>
-            </div>
-          </div>
-        <div id = "albatross_events"></div>
-      </div>
-        
-      </section>
-      <section class="pt-5 mt-2 mt-xl-4 mt-xxl-5">
-        <div class="container pt-3 pt-sm-4 pt-lg-5 mt-xl-2 mt-xxl-3">
-          <div class="fs-sm text-uppercase mb-3">Our team</div>
-          <h2 class="display-6 pb-3 mb-lg-4">Team of professionals</h2>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-            <!-- Item-->
-            <div class="col">
-              <div class="card card-hover border-0 rounded-5 overflow-hidden"><img src="assets/img/landing/corporate/team/03.jpg" alt="Image">
-                <div class="position-absolute top-0 start-0 w-100 h-100 opacity-0">
-                  <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-50"></div>
-                  <div class="card-body d-flex flex-column justify-content-end dark-mode h-100 position-relative zindex-2 text-center">
-                    <h3 class="h5 mb-1">Jane Cooper</h3>
-                    <p class="mb-3">Head of PR department</p>
-                    <div class="d-flex justify-content-center"><a class="btn btn-icon btn-sm btn-light btn-instagram rounded-circle mx-2" href="#"><i class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-light btn-facebook rounded-circle mx-2" href="#"><i class="ai-facebook"></i></a><a class="btn btn-icon btn-sm btn-light btn-linkedin rounded-circle mx-2" href="#"><i class="ai-linkedin"></i></a></div>
+            <!-- Portfolio card with flipping effect (Grid view) -->
+            <a href="#" class="card-flip" style="max-width: 316px;">
+              <div class="card-flip-inner">
+                <div class="card-flip-front" style="background-image: url(../static/assets/img/team_pictures/nick_mills.jpg);">
+                  <div class="d-flex flex-column h-100 ignore-dark-mode">
+                    <h2 class="fs-lg fw-normal mb-0 mt-auto">Branding</h2>
+                  </div>
+                </div>
+                <div class="card-flip-back bg-secondary">
+                  <div class="d-flex flex-column h-100 px-sm-2 pt-sm-2 px-lg-0 pt-lg-0 px-xl-3 pt-xl-3">
+                    <h3 class="h4">Branding</h3>
+                    <ul class="text-body ps-4 mb-3">
+                      <li class="mb-2">Identity design</li>
+                      <li class="mb-2">Brand book creation</li>
+                      <li class="mb-2">Colors and fonts</li>
+                      <li class="mb-2">Banners and covers</li>
+                      <li class="mb-1">Visual style</li>
+                    </ul>
+                    <div class="text-end pt-3 pt-sm-2 pt-xl-4 mt-auto me-sm-n2 me-lg-0 me-xl-n3">
+                      <div class="btn btn-sm btn-icon btn-outline-primary rounded-circle">
+                        <i class="ai-arrow-right"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- Item-->
             <div class="col">
               <div class="card card-hover border-0 rounded-5 overflow-hidden"><img src="assets/img/landing/corporate/team/01.jpg" alt="Image">
@@ -327,7 +328,29 @@
             </div>
           </div>
         </div>
-      </section>      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(240, 239, 222);" id = "albatross_environmentalcommitment">
+        <div id = "albatross_story"></div>
+      </div>
+      </section>
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(245, 242, 242);">
+        <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content; background-color:rgb(245, 242, 242);">
+          <div class="row pt-1 justify-content-center">
+            <h1 style="margin: left 4px; text-align: left; font-family: Pacifico; font-weight: lighter;">Our Story</h1>
+            <hr style="color:#121519">
+          </div>
+          <div class="row pt-5">
+            <div class="col">
+              <p>The story of Albatross started as our founder Nick Mills began preparing for a 24 man father son trip to Bandon Dunes Golf Resort in September of 2022. His preparation consisted of watching hours of videos on Youtube to prepare himself for the intricacies of each course and reading “The Nature of the Game: Links Golf at Bandon Dunes and Far Beyond”, Mike Keiser’s second novel. As he watched and learned more about what to expect on his trip to arguably one of the greatest golf resorts ever created, he looked for ways to connect to the resort off property.</p>
+              <p>During this time in early to mid 2022, popular sports franchises, leagues and athletes continued to become more infatuated with utilizing NFTs in their own way. While Nick had always been interested in cryptocurrencies and NFTs, he never thought he would get involved in the space in a professional capacity. Until an idea popped into his head. Why not give the opportunity for the common golfer to own a unique piece of some of the greatest golf courses ever created? And thus, Albatross was born.</p>
+              <p>Albatross started in late 2022 with a simple mission in mind: “To connect the worldwide golf community to prestigious golf courses around the world in a way that has never been possible before.” Challenges for Albatross have popped up behind every corner. Who will be on the team? Who will we target as a partner? How will we build the community of golf enthusiasts? The list of challenges was never ending. As we pushed to tackle each obstacle, we realized what an incredible idea we had. Each golf course around the world, whether it be a local muni in a town of 10,000 people or a top 100 golf course in the world has admirers of all kinds for its kinks and triumphs. We realized we could provide value for both the common golfer and the golf course by offering our services and partnership to them respectfully. All the while satisfying our pledged duty to give back to the environments surrounding each of our partnered courses. As Albatross moves forward to create a network of partnered courses around the world, we strive to grow our community and recognize their wishes in attempts to connect to the courses in unprecedented ways.</p>
+            </div>
+          </div>
+        <div id = "albatross_environmentalcommitment"></div>
+      </div>
+        
+      </section>
+
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color:rgb(240, 239, 222);">
         <div class="container-fluid rounded-5 position-relative overflow-hidden py-3 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;background-color:rgb(240, 239, 222);">
           <div class="row pb-2 justify-content-center">
             <h1 style="margin: left 4px; text-align: left; font-family:Pacifico; font-weight: lighter;">Our Environmental Commitment</h1>
@@ -338,10 +361,11 @@
               <p>Albatross is committed to sustainability and improving the health of the planet. As our partnered courses are deeply embedded into nature, we aim to assist in any conservation efforts they might undertake on and off their properties. To show our commitment to the cause, we pledge that 5% of all revenues from each initial collection sale will go to charities/organizations focused around the preservation of the environment. The recipient(s) of the money raised will be decided in collaboration with our golf course partners and the Albatross community.</p>
             </div>
           </div>
+          <div id = "albatross_events"></div>
         </div>
       </section>  
 
-      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color: #37715d; color: white;" id = "albatross_events"> 
+      <section class="container-fluid py-3 px-sm-4 px-md-5" style="background-color: #37715d; color: white;"> 
         <div class="container-fluid rounded-5 position-relative overflow-hidden py-5 px-3 px-sm-4 px-xl-5 mx-md-n3 mx-lg-auto" style="max-width: 1660px; max-height:fit-content;background-color:#37715d;">
           <div class="row pb-2 justify-content-center">
             <h1 style="margin: left 4px; text-align: left; color:white; font-family:Pacifico; font-weight: lighter;">Community Golf Tournaments & Events</h1>
@@ -352,7 +376,6 @@
             <p>Keep an eye on our socials to see when our first tournament is announced!</p>
             
           </div>
-          <div id = "albatross_environmentalcommitment"></div>
         </div>
       </section>
       
