@@ -2,20 +2,20 @@
 {% block content %}
 
     <header class="navbar navbar-expand-md bg-dark fixed-top m-0 p-0" style="max-height:min-content;">
-        <div class="container mx-0" style="justify-content: left;"><a class="navbar-brand" href="{% url 'homepage' %}">
+        <div class="container mx-0" style="justify-content: left; background-color: black;"><a class="navbar-brand" href="{% url 'homepage' %}">
             <span class="text-primary flex-shrink-0 m-0" style="display: flex; align-items: center; font-family:Pacifico; font-size:large;">
                 <img src = "{% static 'assets/img/icon-alb-3.png' %}" height = "70" width = "70" style="margin: auto; margin-right: 4px;">
                   Albatross</span></a>
-            <button class="navbar-toggler  ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-            <nav class="collapse navbar-collapse mb-0" id="navbarNav">
-                <ul class="navbar-nav navbar-nav-scroll mb-0 bg-dark p-3" >
+            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <nav class="collapse navbar-collapse mb-0" style="border: 0px; background-color: black;" id="navbarNav">
+                <ul class="navbar-nav navbar-nav-scroll mb-0  p-3" style="border: 0px;">
                 <li class="nav-item mb-0"><div class="dropdown" style="border: 0px;">
                     <a class="btn btn-secondary dropdown-toggle" style="background-color: transparent; border-color: transparent; color: white;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     Home
                     </a>
                 
-                    <ul class="dropdown-menu bg-dark" style="color: white; border: 0px;" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" style="font-weight:bolder; color: white;"  href="{% url 'homepage' %}">Homepage</a></li>
+                    <ul class="dropdown-menu" style="color: white; border: 0px; " aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" style="font-weight:bolder; color: white; background-color: black;"  href="{% url 'homepage' %}">Homepage</a></li>
                     <hr style="margin-left:5%; margin-right:5%;">
                     <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_collections" style="color: white;">Albatross Collections</a></li>
                     <li><a class="dropdown-item" href="{% url 'homepage' %}#albatross_partners" style="color: white;">Partners</a></li>
@@ -28,8 +28,8 @@
                         Technology
                     </a>
                     
-                    <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink" style="color: white; border: 0px;" >
-                        <li><a class="dropdown-item" style="font-weight:bolder; color:white;" href="{% url 'technology' %}">Technology Page</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="color: white; border: 0px;" >
+                        <li><a class="dropdown-item" style="font-weight:bolder; color:white; background-color: black;" href="{% url 'technology' %}">Technology Page</a></li>
                         <hr style="margin-left:5%; margin-right:5%;">
                         <li><a class="dropdown-item" href="{% url 'technology' %}#albatross_application" style="color: white;">Application</a></li>
                         <li><a class="dropdown-item" href="{% url 'technology' %}#albatross_faqs" style="color: white;">FAQs</a></li>
@@ -42,8 +42,8 @@
                         About
                     </a>
                     
-                    <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink" style="color: white; border: 0px;">
-                        <li><a class="dropdown-item" style="font-weight:bolder; color:white;" href="{% url 'about' %}">About Us</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="color: white; border: 0px;">
+                        <li><a class="dropdown-item" style="font-weight:bolder; color:white; background-color: black;" href="{% url 'about' %}">About Us</a></li>
                         <hr style="margin-left:5%; margin-right:5%;">
                         <li><a class="dropdown-item" href="{% url 'about' %}#albatross_team" style="color: white;">Our Team</a></li>
                         <li><a class="dropdown-item" href="{% url 'about' %}#albatross_story" style="color: white;">Our Story</a></li>
