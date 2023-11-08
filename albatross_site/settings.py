@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-import environ
+#import environ
 from pathlib import Path
 
 # Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
+#env = environ.Env()
+#environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-SECRET_KEY= env('SECRET_KEY')
+SECRET_KEY= "70e8a68b4a65b6a0717ac5ecc3406d179dc826e17cf147978f837e908026172cc7c43669889c861b"
 DEBUG= True
 
 ALLOWED_HOSTS = ['3.142.10.48','albatrossgolf.io','www.albatrossgolf.io','127.0.0.1']
@@ -129,8 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = "cthompson@albatrossgolf.io"
+EMAIL_HOST_PASSWORD = "qxcdtwlarvujexhg"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
